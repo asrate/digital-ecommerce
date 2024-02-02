@@ -26,7 +26,9 @@ export const signin = async (req, res) => {
     if (!validPassword)
       return res.status(404).json("invalid email or password");
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-    res.status(200).json(token);
+    const { password: pass, ...rest } = validUser._doc;
+    res.status(200).json({ ...rest, token: token });
+    // res.status(200).json(token);
   } catch (error) {
     console.error(error);
   }
