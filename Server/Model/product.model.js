@@ -12,12 +12,31 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  discountPrice: {
+    type: Number,
+  },
   stackQuantity: {
     type: Number,
+  },
+  offer: {
+    type: Boolean,
+  },
+  image: {
+    type: String,
+  },
+  video: {
+    type: String,
+  },
+  pdf: {
+    type: String,
   },
   catagory: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Catagory",
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
 });
 const product = mongoose.model("Product", productSchema);

@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import authRouter from "./route/auth.route.js";
+import listingProductRouter from "./route/productListing.route.js";
 import multer from "multer";
 import path from "path";
 dotenv.config();
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
+app.use("/api/listing", listingProductRouter);
 // Image storage Engine
 const storage = multer.diskStorage({
   destination: "./upload/images",
