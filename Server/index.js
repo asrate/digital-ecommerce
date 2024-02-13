@@ -15,6 +15,15 @@ app.use(express.json());
 
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingProductRouter);
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
 // Image storage Engine
 const storage = multer.diskStorage({
   destination: "./upload/images",
